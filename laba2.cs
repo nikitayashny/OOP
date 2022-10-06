@@ -1,4 +1,4 @@
-namespace laba2
+﻿namespace laba2
 {
     class Date
     {
@@ -8,7 +8,6 @@ namespace laba2
         string [] num = { "января", "февраля", "марта", "апреля", "мая", "июня", "июля", "августа", "сентября", "октября", "ноября", "декабря" };
         static int statDay;
         public static int StatDay => statDay;
-
         static Date() { statDay = 0; }
         public Date() { day = 31; month = 1; year = 2004; }
         public Date(int a) { day = a; month = 3; year = 1980; }
@@ -39,6 +38,7 @@ namespace laba2
         }
         public void Print()
         {
+
             if (Valid(day, month, year))
             {
                 Console.WriteLine("Выберите вариант вывода данных: 1 - 5 января 2018 года, 2 - 05/01/2018");
