@@ -1,4 +1,4 @@
-﻿namespace laba2
+namespace laba2
 {
     class Date
     {
@@ -8,11 +8,13 @@
         string [] num = { "января", "февраля", "марта", "апреля", "мая", "июня", "июля", "августа", "сентября", "октября", "ноября", "декабря" };
         static int statDay;
         public static int StatDay => statDay;
-        static Date() { statDay = 0; }
+
+        static Date() { statDay = 0; }                                          
         public Date() { day = 31; month = 1; year = 2004; }
         public Date(int a) { day = a; month = 3; year = 1980; }
         public Date(int a, int b, int c) { day = a; month = b; year = c; }
-
+        private Date(int a, int b) { day = a; month = b; year = 2000; }     // закрытый конструктор
+ 
         bool LeapYear(int year)
         {
             if (year % 4 == 0 && year % 100 != 0 || year % 400 == 0)
@@ -38,7 +40,6 @@
         }
         public void Print()
         {
-
             if (Valid(day, month, year))
             {
                 Console.WriteLine("Выберите вариант вывода данных: 1 - 5 января 2018 года, 2 - 05/01/2018");
@@ -72,10 +73,12 @@
             Date MyBirthDate = new();
             Date MumsBirthDate = new(15);
             Date DadsBirthDate = new(13, 5, 1980);
+            //Date PrvtConstrator = new(4, 10); 
 
             MyBirthDate.Print();
             MumsBirthDate.Print();
             DadsBirthDate.Print();
+            //PrvtConstrator.Print();
 
             Console.WriteLine("Вывод статического конструктора: " + Date.StatDay);
         }
