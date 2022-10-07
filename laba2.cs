@@ -2,7 +2,6 @@ namespace laba2
 {
     class Lab2
     {
-
         static int statDay;
         public static int StatDay => statDay;
         public readonly bool _a;
@@ -10,6 +9,31 @@ namespace laba2
 
         static Lab2() { statDay = 0; }
         public Lab2(bool a) { _a = a; Console.WriteLine("Вывод поля readonly: " + _a); }
+        private int c;
+        public int d;
+        public Lab2() { }
+        public int C 
+        {
+            get 
+            { 
+                return c; 
+            } 
+            set 
+            {
+                c = value; 
+            }
+        }
+        public int D
+        {
+            get
+            {
+                return d;
+            }
+            private set 
+            { 
+                d = value; 
+            }
+        }
     }
     class Date
     {
@@ -92,6 +116,14 @@ namespace laba2
             Console.WriteLine("Вывод статического конструктора: " + Lab2.StatDay);
             Lab2 ro = new(true);
             Console.WriteLine("Вывод поля const: " + Lab2._b);
+
+            Lab2 getset = new();
+            getset.C = 10;
+            int c = getset.C;
+            Console.WriteLine("Вывод поля со свойствами get set: " + c);
+
+            //getset.D = 20;            // ограничен доступ по set
+            //int d = getset.D;
         }
     }
 }
