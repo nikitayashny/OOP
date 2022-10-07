@@ -8,12 +8,16 @@ namespace laba2
         string [] num = { "января", "февраля", "марта", "апреля", "мая", "июня", "июля", "августа", "сентября", "октября", "ноября", "декабря" };
         static int statDay;
         public static int StatDay => statDay;
+        public readonly bool _a;
+        public const double _b = 0.1;
 
         static Date() { statDay = 0; }                                          
         public Date() { day = 31; month = 1; year = 2004; }
         public Date(int a) { day = a; month = 3; year = 1980; }
         public Date(int a, int b, int c) { day = a; month = b; year = c; }
         private Date(int a, int b) { day = a; month = b; year = 2000; }     // закрытый конструктор
+        public Date (bool a) { _a = a; Console.WriteLine("Вывод поля readonly: " + _a); }
+     
  
         bool LeapYear(int year)
         {
@@ -81,6 +85,8 @@ namespace laba2
             //PrvtConstrator.Print();
 
             Console.WriteLine("Вывод статического конструктора: " + Date.StatDay);
+            Date ro = new(true);
+            Console.WriteLine("Вывод поля const: " + Date._b);
         }
     }
 }
