@@ -1,5 +1,9 @@
 namespace laba2
 {
+    class partial
+    {
+
+    }
     class Lab2
     {
         public static int statDay;
