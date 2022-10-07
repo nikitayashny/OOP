@@ -101,6 +101,10 @@ namespace laba2
     }
     class Program
     {
+        static void Foo(ref int r)
+        {
+            r = 5;
+        }
         static void Main()
         {
             Date MyBirthDate = new();
@@ -124,6 +128,10 @@ namespace laba2
 
             //getset.D = 20;            // ограничен доступ по set
             //int d = getset.D;
+
+            int r = 2;
+            Foo(ref r);
+            Console.WriteLine("Вывод со свойством ref: " + r);
         }
     }
 }
