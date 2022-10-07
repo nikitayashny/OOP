@@ -34,6 +34,15 @@ namespace laba2
                 d = value; 
             }
         }
+        public static void Foo(ref int r)
+        {
+            Console.WriteLine("Вывод со свойством ref: " + r);
+        }
+        public static void FooO(out int r)
+        {
+            r = 0;
+            Console.WriteLine("Вывод со свойством out: " + r);
+        }
     }
     class Date
     {
@@ -101,10 +110,6 @@ namespace laba2
     }
     class Program
     {
-        static void Foo(ref int r)
-        {
-            r = 5;
-        }
         static void Main()
         {
             Date MyBirthDate = new();
@@ -130,8 +135,8 @@ namespace laba2
             //int d = getset.D;
 
             int r = 2;
-            Foo(ref r);
-            Console.WriteLine("Вывод со свойством ref: " + r);
+            Lab2.Foo(ref r);
+            Lab2.FooO(out r);
         }
     }
 }
