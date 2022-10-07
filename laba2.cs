@@ -2,37 +2,26 @@ namespace laba2
 {
     class Lab2
     {
-        static int statDay;
-        public static int StatDay => statDay;
+        public static int statDay;
         public readonly bool _a;
         public const double _b = 0.1;
+        public static int counter = 0;
 
         static Lab2() { statDay = 0; }
         public Lab2(bool a) { _a = a; Console.WriteLine("Вывод поля readonly: " + _a); }
         private int c;
         public int d;
-        public Lab2() { }
-        public int C 
+        public Lab2() 
         {
-            get 
-            { 
-                return c; 
-            } 
-            set 
-            {
-                c = value; 
-            }
+            counter++;
         }
-        public int D
-        {
-            get
-            {
-                return d;
-            }
-            private set 
-            { 
-                d = value; 
-            }
+        public int C {
+            get { return c; } 
+            set { c = value; }
+        }
+        public int D {
+            get { return d; }
+            private set { d = value; }
         }
         public static void Foo(ref int r)
         {
@@ -122,7 +111,7 @@ namespace laba2
             DadsBirthDate.Print();
             //PrvtConstrator.Print();
 
-            Console.WriteLine("Вывод статического конструктора: " + Lab2.StatDay);
+            Console.WriteLine("Вывод статического конструктора: " + Lab2.statDay);
             Lab2 ro = new(true);
             Console.WriteLine("Вывод поля const: " + Lab2._b);
 
@@ -137,6 +126,8 @@ namespace laba2
             int r = 2;
             Lab2.Foo(ref r);
             Lab2.FooO(out r);
+
+            Console.WriteLine("Количество созданных объектов Lab2() без параметров: " + Lab2.counter);
         }
     }
 }
