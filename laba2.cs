@@ -208,6 +208,16 @@ namespace laba2
                     dates[i].Print();
                 }
             }
+
+            int Day;
+            Console.WriteLine("Введите число: "); Day = Convert.ToInt32(Console.ReadLine());
+            for (int i = 0;i < dates.Length; i++)
+            {
+                if (dates[i].day == Day)
+                {
+                    dates[i].Print();
+                }
+            }
             Console.ReadLine();
         }
     }
