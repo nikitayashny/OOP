@@ -7,17 +7,6 @@ namespace laba2
         {
             this.name = name;
         }
-        public override int GetHashCode()
-        {
-            int hash = 0;
-            Random rand = new Random();
-            for (int i = 0; i < name.Length; i++)
-            {
-                hash += name[i];
-            }
-            hash *= rand.Next(1000, 999999);
-            return (int)Math.Abs(hash * name.Length);
-        }
 
         public override bool Equals(object? obj)
         {
