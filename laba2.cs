@@ -218,6 +218,11 @@ namespace laba2
                     dates[i].Print();
                 }
             }
+
+
+            var student = new { Name = "Nikita", Age = 18 };
+            Console.WriteLine("Вывод анонимного типа: ");
+            Console.WriteLine(student.GetType().Name + " " + student.Name);
             Console.ReadLine();
         }
     }
