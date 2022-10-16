@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -77,7 +77,29 @@ namespace laba3
         {
             return Matrix.Sum(a, b);
         }
-        
+
+        public static Matrix ToDelete(Matrix a, int pos)
+        {
+            Matrix resMass = new Matrix(a.N);
+            for (int i = 0; i < a.N; i++)
+            {
+                if (i == (pos - 1))
+                {
+                    i += 1;
+                }
+                for (int j = 0; j < a.N; j++)
+                {
+                    resMass[i, j] = a[i, j];
+                }
+            }
+            return resMass;
+        }
+
+        public static Matrix operator -(Matrix a, int pos)
+        {
+            return Matrix.ToDelete(a, pos);
+        }
+
         ~Matrix()                                               // Деструктор Matrix
         {
             Console.WriteLine("Очистка");
