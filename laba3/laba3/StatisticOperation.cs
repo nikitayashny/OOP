@@ -36,5 +36,22 @@ namespace laba3
             }
             return max - min;
         }
+        public static int Count(Matrix a)
+        {
+            int count = 0;
+            for (int i = 0; i < a.N; i++)
+            {
+                for (int j = 0; j < a.N; j++)
+                {
+                    count += 1;
+                }
+            }
+            return count;
+        }
+
+        public static string FormatText(this string str)
+        {
+            return char.ToUpper(str[0]) + str.Substring(1).ToLower();
+        }
     }
 }
