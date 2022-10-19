@@ -53,5 +53,21 @@ namespace laba3
         {
             return char.ToUpper(str[0]) + str.Substring(1).ToLower();
         }
+
+        public static int MainSum(this Matrix a)
+        {
+            int mainsum = 0;
+            for (int i = 0; i < a.N; i++)
+            {
+                for (int j = 0; j < a.N; j++)
+                {
+                    if (i == j)
+                    {
+                        mainsum += a[i, j];
+                    }
+                }
+            }
+            return mainsum;
+        }
     }
 }
