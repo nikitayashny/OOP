@@ -109,7 +109,7 @@ namespace laba3
             return "Матрицы равны";
         }
 
-        public static string operator <(Matrix a, Matrix b)     // перегрузка операторов <>
+        public static string operator <(Matrix a, Matrix b)     // перегрузка сравнения
         {
             return Compare(a, b);
         }
@@ -132,10 +132,35 @@ namespace laba3
             return resMass;
         }
 
-        public static Matrix operator *(Matrix a, int b)
+        public static Matrix operator *(Matrix a, int b)        // перегрузка копирования
         {
             return Copy(a);
         }
+
+
+
+        Production Product = new Production(143, "ДОМОЧАЙ");      // вложенный объект
+        class Production                                        // вложенные класс
+        {
+            public Production(int id, string nameOfOrganization)
+            {
+                _id = id;
+                _nameOfOrganization = nameOfOrganization;
+            }
+            public int Id
+            {
+                get { return _id; }
+                set { _id = value; }
+            }
+            public string NameOfOrganization
+            {
+                get { return _nameOfOrganization; }
+                set { _nameOfOrganization = value; }
+            }
+            private int _id;
+            private string _nameOfOrganization;
+        }
+
 
         ~Matrix()                                               // Деструктор Matrix
         {
