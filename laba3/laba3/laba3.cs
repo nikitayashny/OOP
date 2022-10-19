@@ -52,6 +52,16 @@ namespace laba3
             mass5 = (mass2 * 1);
             mass5.OutputMat();
             Console.WriteLine();
+
+            Matrix.Developer person = new Matrix.Developer(777, "Nikita", "Googlex");
+
+            Console.WriteLine("Сумма элементов матрицы: " + StatisticOperation.Sum(mass1));
+            Console.WriteLine("Разница между максимальным и минимальным элементом матрицы: " + StatisticOperation.Diff(mass1));
+            Console.WriteLine("Количество элементов матрицы: " + StatisticOperation.Count(mass1));
+
+            string s = "mY NaMe Is NiKiTa";
+            Console.WriteLine(s + " изменено: " + StatisticOperation.FormatText(s));
+            Console.WriteLine("Сумма элементов главной диагонали: " + StatisticOperation.MainSum(mass1));
         }
     }
 }
