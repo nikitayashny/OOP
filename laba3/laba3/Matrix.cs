@@ -72,10 +72,10 @@ namespace laba3
             }
             return resMass;
         }
-   
+
         public static Matrix operator +(Matrix a, Matrix b)     // Перегрузка сложения
         {
-            return Matrix.Sum(a, b);
+            return Sum(a, b);
         }
 
         public static Matrix ToDelete(Matrix a, int pos)
@@ -95,9 +95,28 @@ namespace laba3
             return resMass;
         }
 
-        public static Matrix operator -(Matrix a, int pos)
+        public static Matrix operator -(Matrix a, int pos)      // перегрузка удаления
         {
-            return Matrix.ToDelete(a, pos);
+            return ToDelete(a, pos);
+        }
+
+        public static string Compare(Matrix a, Matrix b)
+        {
+            for (int i = 0; i < a.n; i++)
+                for (int j = 0; j < a.n; j++)
+                    if (a[i, j] != b[i, j])
+                        return "Матрицы не равны";
+            return "Матрицы равны";
+        }
+
+        public static string operator <(Matrix a, Matrix b)     // перегрузка операторов <>
+        {
+            return Compare(a, b);
+        }
+
+        public static string operator >(Matrix a, Matrix b)
+        {
+            return Compare(a, b);
         }
 
         ~Matrix()                                               // Деструктор Matrix
