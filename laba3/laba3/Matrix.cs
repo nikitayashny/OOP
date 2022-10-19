@@ -119,6 +119,24 @@ namespace laba3
             return Compare(a, b);
         }
 
+        public static Matrix Copy(Matrix a)
+        {
+            Matrix resMass = new Matrix(a.N);
+            for (int i = 0; i < a.N; i++)
+            {
+                for (int j = 0; j < a.N; j++)
+                {
+                    resMass[i, j] = a[i, j];
+                }
+            }
+            return resMass;
+        }
+
+        public static Matrix operator *(Matrix a, int b)
+        {
+            return Copy(a);
+        }
+
         ~Matrix()                                               // Деструктор Matrix
         {
             Console.WriteLine("Очистка");
