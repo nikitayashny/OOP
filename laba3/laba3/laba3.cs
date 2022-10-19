@@ -60,8 +60,9 @@ namespace laba3
             Console.WriteLine("Количество элементов матрицы: " + StatisticOperation.Count(mass1));
 
             string s = "mY NaMe Is NiKiTa";
-            Console.WriteLine(s + " изменено: " + StatisticOperation.FormatText(s));
-            Console.WriteLine("Сумма элементов главной диагонали: " + StatisticOperation.MainSum(mass1));
+            Console.WriteLine(s + " изменено: " + s.FormatText());
+            Console.WriteLine("Сумма элементов главной диагонали: " + mass1.MainSum());
+            
         }
     }
 }
