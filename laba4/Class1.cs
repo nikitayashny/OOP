@@ -55,7 +55,7 @@ namespace laba4
     }
     sealed class Caramel : Candy, IPastry
     {
-        protected string grade;  
+        protected string grade = " ";  
         public Caramel(string title, int amount, int price, string grade) : base(title, amount, price)
         {
             this.title = title;
@@ -138,7 +138,7 @@ namespace laba4
     class Cookie : Candy, IPastry
     {
         protected bool gluten;
-        protected string glutenstr;
+        protected string glutenstr = " ";
         public Cookie(string title, int amount, int price, bool gluten) : base(title, amount, price)
         {
             this.title = title;
@@ -169,6 +169,15 @@ namespace laba4
         public override void Official()
         {
             Console.WriteLine("<< Очень вкусное печенье >>");
+        }
+    }
+    class Printer
+    {
+        public virtual void IAmPrinting(Candy candies)
+        {
+            Console.WriteLine($"\t{candies.GetType().Name}");
+            candies.ToString();
+            candies.Official();
         }
     }
 }
