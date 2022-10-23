@@ -49,7 +49,7 @@ namespace laba4
             Console.WriteLine("----Информация о товаре----");
             Console.WriteLine($"Название: {title}");
             Console.WriteLine($"Количество: {amount}");
-            Console.WriteLine($"Цена: {price}");
+            Console.WriteLine($"Цена: {price} руб.");
             return "\0";
         }
     }
@@ -109,10 +109,33 @@ namespace laba4
             base.Official();
         }
     }
-    //class ChocolateCandy : Candy
-    //{
+    class ChocolateCandy : Candy, IPastry
+    {
+        protected int procent;
+        public ChocolateCandy(string title, int amount, int price, int procent) : base(title, amount, price)
+        {
+            this.title = title;
+            this.amount = amount;
+            this.price = price;
+            this.procent = procent;
+        }
 
-    //}
+        public int Procent
+        {
+            get { return procent; }
+            set { procent = value; }
+        }
+        public override string ToString()
+        {
+            base.ToString();
+            Console.WriteLine($"Процент содержания какао: {procent}%");
+            return "\0";
+        }
+        public override void Official()
+        {
+            base.Official();
+        }
+    }
     //class Cookie : Candy
     //{
 
