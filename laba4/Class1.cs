@@ -55,7 +55,7 @@ namespace laba4
     }
     sealed class Caramel : Candy, IPastry
     {
-        protected string grade = " ";  
+        protected string grade;  
         public Caramel(string title, int amount, int price, string grade) : base(title, amount, price)
         {
             this.title = title;
@@ -106,6 +106,15 @@ namespace laba4
         public override void Official()
         {
             base.Official();
+        }
+        public override bool Equals(object? obj)
+        {
+            return base.Equals(obj);
+        }
+        public override int GetHashCode()
+        {
+            Console.WriteLine("Артикул: " + color.GetHashCode());
+            return 0;
         }
     }
     class ChocolateCandy : Candy, IPastry
