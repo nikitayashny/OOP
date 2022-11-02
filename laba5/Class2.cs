@@ -66,4 +66,31 @@ namespace laba5
             Console.WriteLine("--------------");
         }
     }
+    class Controller
+    {
+        public static int GiftWeight(ChildrensGift ListCandy)
+        {
+            int weight = 0;
+            foreach (var i in ListCandy)
+            {
+                if (i is CandyBox)
+                {
+                    weight += 1000;
+                }
+                if (i is Caramel)
+                {
+                    weight += 300;
+                }
+                if (i is ChocolateCandy)
+                {
+                    weight += 200;
+                }
+                if (i is Cookie)
+                {
+                    weight += 1500;
+                }
+            }
+            return weight;
+        }
+    }
 }
