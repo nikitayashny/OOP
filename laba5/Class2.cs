@@ -27,4 +27,43 @@ namespace laba5
             Console.WriteLine("<< Очень вкусное печенье >>");
         }
     }
+    class ChildrensGift
+    {
+        private readonly List<Candy>? ListCandy;
+        public List<Candy>? GetList
+        {
+            get;
+            set;
+        }
+        public ChildrensGift()
+        {
+            ListCandy = new List<Candy>();
+        }
+        public void addCandy(Candy obj)
+        {
+            ListCandy.Add(obj);
+        }
+        public bool removeCandy(int position)
+        {
+            if (position < ListCandy.Count)
+            {
+                Console.WriteLine($"Элемент {position} удалён");
+                ListCandy.RemoveAt(position - 1);
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        }
+        public void Show()
+        {
+            Console.WriteLine("----Список----"); Console.WriteLine();
+            foreach (Candy obj in ListCandy)
+            {
+                Console.WriteLine(obj);
+            }
+            Console.WriteLine("--------------");
+        }
+    }
 }
