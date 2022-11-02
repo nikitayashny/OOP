@@ -10,33 +10,16 @@ namespace laba5
     {
         static void Main(string[] args)
         {
-
-
-            IPastry candybox = new CandyBox("Merci", 10, 350, "синий");
-            if (candybox is CandyBox)
+            ChildrensGift childrensgift = new ChildrensGift();
+            Candy[] candies = { new CandyBox("Merci", 10, 350, "синий"), new Caramel("Карамелька", 15, 100, "высший"),
+                              new ChocolateCandy("Аришка", 75, 3, 34), new Cookie("Любовь", 40, 85, false)};
+            foreach (var i in candies)
             {
-                candybox = candybox as CandyBox;
-                candybox.ToString();
-                candybox.GetHashCode();
-                candybox.Official();
-                candybox.Equals(candybox);
-                Console.WriteLine();
+                childrensgift.addCandy(i);
             }
-
-            Candy caramel = new Caramel("Карамелька", 15, 100, "высший");
-            Candy chocolatecandy = new ChocolateCandy("Аришка", 75, 3, 34);
-            Candy cookie = new Cookie("Любовь", 40, 85, false);
-            Cookie? Cookie1 = cookie as Cookie;
-
-            Candy[] candies = { caramel, chocolatecandy, cookie };
-            Console.WriteLine("Вызов метода IAmPrinting"); Console.WriteLine();
-            Printer printer = new Printer();
-            foreach (var item in candies)
-            {
-                printer.IAmPrinting(item);
-                Console.WriteLine();
-            }
-            Console.ReadKey();
+            childrensgift.Show();
+            childrensgift.removeCandy(2);
+            childrensgift.Show();
         }
     }
 }
