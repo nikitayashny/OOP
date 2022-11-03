@@ -26,6 +26,11 @@ namespace laba5
             ChildrensGift childrengiftSorted = Controller.SugarSort(childrensgift);
             childrengiftSorted.Show();
             Console.WriteLine("Конфета с заданным содержанием сахара: " + Controller.FindCandy(childrensgift, 30));
+
+            Console.WriteLine("\n\n- - - - - - - - Тест чтения файла - - - - - - - -");
+            ChildrensGift container = new ChildrensGift();
+            Controller.ReadFile(container, @"C:\Users\User\Desktop\ООП\laba5\laba5\ChildrensGift.txt");
+            container.Show();
            
             Console.ReadKey();
         }
