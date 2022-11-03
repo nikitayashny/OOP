@@ -109,27 +109,16 @@ namespace laba5
                 counter++;
             }
 
-            int[] pricearr = new int[arr.Length];
-            for (int i = 0; i < arr.Length; i++)
-            {
-                pricearr[i] = arr[i].price;
-            }
-
             Candy temp;
-            int tempint;
-            for (int i = 0; i < pricearr.Length - 1; i++)
+            for (int i = 0; i < arr.Length - 1; i++)
             {
-                for (int j = 0; j < pricearr.Length - i - 1; j++)
+                for (int j = 0; j < arr.Length - i - 1; j++)
                 {
-                    if (pricearr[j] < pricearr[j + 1])
+                    if (arr[j].price < arr[j + 1].price)
                     {
                         temp = arr[j];
                         arr[j] = arr[j + 1];
-                        arr[j + 1] = temp;
-
-                        tempint = pricearr[j];
-                        pricearr[j] = pricearr[j + 1];
-                        pricearr[j + 1] = tempint;
+                        arr[j + 1] = temp;    
                     }
                 }
             }
