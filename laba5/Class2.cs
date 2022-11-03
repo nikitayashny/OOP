@@ -147,5 +147,28 @@ namespace laba5
             }
             return str;
         }
+        public static void ReadFile(ChildrensGift collection, string patch)
+        {
+            string[] textFile = System.IO.File.ReadAllLines(patch);
+            for (int i = 0; i < textFile.Length; i++)
+            {
+                string[] dwordLine = textFile[i].Split(' ');
+                switch (dwordLine[0])
+                {
+                    case "CandyBox":
+                        collection.addCandy(new CandyBox(dwordLine[1], Convert.ToInt32(dwordLine[2]), Convert.ToInt32(dwordLine[3]), Convert.ToInt32(dwordLine[4]), dwordLine[5]));
+                        break;
+                    case "Caramel":
+                        collection.addCandy(new Caramel(dwordLine[1], Convert.ToInt32(dwordLine[2]), Convert.ToInt32(dwordLine[3]), Convert.ToInt32(dwordLine[4]), dwordLine[5]));
+                        break;
+                    case "ChocolateCandy":
+                        collection.addCandy(new ChocolateCandy(dwordLine[1], Convert.ToInt32(dwordLine[2]), Convert.ToInt32(dwordLine[3]), Convert.ToInt32(dwordLine[4]), Convert.ToInt32(dwordLine[5])));
+                        break;
+                    case "Cookie":
+                        collection.addCandy(new Cookie(dwordLine[1], Convert.ToInt32(dwordLine[2]), Convert.ToInt32(dwordLine[3]), Convert.ToInt32(dwordLine[4]), Convert.ToBoolean(dwordLine[5])));
+                        break;
+                }
+            }
+        }
     }
 }
