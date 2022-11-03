@@ -92,7 +92,7 @@ namespace laba5
             }
             return weight;
         }
-        public static void SugarSort(ChildrensGift ListCandy) 
+       public static ChildrensGift SugarSort(ChildrensGift ListCandy) 
         {
             int size = 0;
             int counter = 0;
@@ -133,11 +133,14 @@ namespace laba5
                     }
                 }
             }
-
+            
+            ChildrensGift childrensGift = new ChildrensGift();
+            
             for (int i = 0; i < arr.Length; i++)
             {
-                Console.WriteLine(arr[i]);
+                childrensGift.addCandy(arr[i]);
             }
+            return childrensGift;
         }
     }
 }
