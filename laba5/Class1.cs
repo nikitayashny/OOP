@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -16,7 +16,8 @@ namespace laba5
     {
         protected string title;
         protected int amount;
-        protected int price;
+        public int price;
+        public int sugarprocent;
        
         enum Availability
         {
@@ -39,11 +40,12 @@ namespace laba5
             }
         }
 
-        public Candy(string title, int amount, int price)
+        public Candy(string title, int amount, int price, int sugarprocent)
         {
             this.title = title;
             this.amount = amount;
             this.price = price;
+            this.sugarprocent = sugarprocent;
         }
 
         public string Title
@@ -61,6 +63,11 @@ namespace laba5
             get { return price; }
             set { price = value; }
         }
+        protected int Sugarprocent
+        {
+            get { return sugarprocent; }
+            set { sugarprocent = value; }
+        }
 
         public virtual void Official()
         { 
@@ -72,6 +79,7 @@ namespace laba5
             Console.WriteLine($"Название: {title}");
             Console.WriteLine($"Количество: {amount}");
             Console.WriteLine($"Цена: {price} руб.");
+            Console.WriteLine($"Процент содержания сахара: {sugarprocent}");
             Console.WriteLine($"Состояние: {CheckAvail.Check()}");
             return "\0";
         }
@@ -79,11 +87,12 @@ namespace laba5
     sealed class Caramel : Candy, IPastry
     {
         private string grade;
-        public Caramel(string title, int amount, int price, string grade) : base(title, amount, price)
+        public Caramel(string title, int amount, int price, int sugarprocent, string grade) : base(title, amount, price, sugarprocent)
         {
             this.title = title;
             this.amount = amount;
             this.price = price;
+            this.sugarprocent = sugarprocent;
             this.grade = grade;
         }
 
@@ -107,12 +116,13 @@ namespace laba5
     class CandyBox : Candy, IPastry
     {
         protected string color;
-        public CandyBox(string title, int amount, int price, string color) : base(title, amount, price)
+        public CandyBox(string title, int amount, int price, int sugarprocent, string color) : base(title, amount, price, sugarprocent)
         {
             this.title = title;
             this.amount = amount;
             this.price = price;
             this.color = color;
+            this.sugarprocent= sugarprocent;
         }
 
         public string Color
@@ -143,11 +153,12 @@ namespace laba5
     class ChocolateCandy : Candy, IPastry
     {
         protected int procent;
-        public ChocolateCandy(string title, int amount, int price, int procent) : base(title, amount, price)
+        public ChocolateCandy(string title, int amount, int price, int sugarprocent, int procent) : base(title, amount, price, sugarprocent)
         {
             this.title = title;
             this.amount = amount;
             this.price = price;
+            this.sugarprocent = sugarprocent;
             this.procent = procent;
         }
 
@@ -171,11 +182,12 @@ namespace laba5
     {
         protected bool gluten;
         protected string glutenstr = " ";
-        public Cookie(string title, int amount, int price, bool gluten) : base(title, amount, price)
+        public Cookie(string title, int amount, int price, int sugarprocent, bool gluten) : base(title, amount, price, sugarprocent)
         {
             this.title = title;
             this.amount = amount;
             this.price = price;
+            this.sugarprocent = sugarprocent;
             this.gluten = gluten;
         }
 
