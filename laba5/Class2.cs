@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -65,8 +65,12 @@ namespace laba5
             }
             Console.WriteLine("--------------");
         }
+        public System.Collections.IEnumerator GetEnumerator()
+        {
+            return ListCandy.GetEnumerator();
+        }
     }
-    class Controller
+    class Controller 
     {
         public static int GiftWeight(ChildrensGift ListCandy)
         {
@@ -92,7 +96,7 @@ namespace laba5
             }
             return weight;
         }
-       public static ChildrensGift SugarSort(ChildrensGift ListCandy) 
+        public static ChildrensGift SugarSort(ChildrensGift ListCandy) 
         {
             int size = 0;
             int counter = 0;
@@ -114,7 +118,7 @@ namespace laba5
             {
                 for (int j = 0; j < arr.Length - i - 1; j++)
                 {
-                    if (arr[j].price < arr[j + 1].price)
+                    if (arr[j].Price < arr[j + 1].Price)
                     {
                         temp = arr[j];
                         arr[j] = arr[j + 1];
@@ -130,6 +134,18 @@ namespace laba5
                 childrensGift.addCandy(arr[i]);
             }
             return childrensGift;
+        }
+        public static string FindCandy(ChildrensGift ListCandy, int procent)
+        {
+            string str = "Конфеты с заданным содержанием сахара нет";
+            foreach (Candy i in ListCandy)
+            {
+                if (i.Sugarprocent == procent)
+                {
+                    str = i.Title.ToString();
+                }
+            }
+            return str;
         }
     }
 }
