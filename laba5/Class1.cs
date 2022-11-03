@@ -6,146 +6,204 @@ using System.Threading.Tasks;
 
 namespace laba5
 {
-    partial class Cookie
+    interface IPastry
     {
+        void Official();
+        string ToString();
+    }
+
+    abstract class Candy
+    {
+        protected string title;
+        protected int amount;
+        protected int price;
+        protected int sugarprocent;
+       
+        enum Availability
+        {
+            notavail = 0,
+            avail
+        }
+        struct CheckAvail
+        {    
+            static Availability Avail = Availability.avail;
+            public static string Check()
+            {
+                if (Avail == Availability.avail)
+                {
+                    return "Есть в наличии";
+                }
+                else
+                {
+                    return "Нет в наличии";
+                }
+            }
+        }
+
+        public Candy(string title, int amount, int price, int sugarprocent)
+        {
+            this.title = title;
+            this.amount = amount;
+            this.price = price;
+            this.sugarprocent = sugarprocent;
+        }
+
+        public string Title
+        {
+            get { return title; }
+            set { title = value; }
+        }
+        public int Amount
+        {
+            get { return amount; }
+            set { amount = value; }
+        }
+        public int Price
+        {
+            get { return price; }
+            set { price = value; }
+        }
+        public int Sugarprocent
+        {
+            get { return sugarprocent; }
+            set { sugarprocent = value; }
+        }
+
+        public virtual void Official()
+        { 
+            Console.WriteLine("<< Пройдена проверка на качество >>");
+        }
+        public override string ToString()
+        {
+            Console.WriteLine("----Информация о товаре----");
+            Console.WriteLine($"Название: {title}");
+            Console.WriteLine($"Количество: {amount}");
+            Console.WriteLine($"Цена: {price} руб.");
+            Console.WriteLine($"Процент содержания сахара: {sugarprocent}");
+            Console.WriteLine($"Состояние: {CheckAvail.Check()}");
+            return "\0";
+        }
+    }
+    sealed class Caramel : Candy, IPastry
+    {
+        private string grade;
+        public Caramel(string title, int amount, int price, int sugarprocent, string grade) : base(title, amount, price, sugarprocent)
+        {
+            this.title = title;
+            this.amount = amount;
+            this.price = price;
+            this.sugarprocent = sugarprocent;
+            this.grade = grade;
+        }
+
+        public string Grade
+        {
+            get { return grade; }
+            set { grade = value; }
+        }
+
         public override string ToString()
         {
             base.ToString();
-            if (gluten == true)
-            {
-                glutenstr = "да";
-            }
-            else
-            {
-                glutenstr = "нет";
-            }
-            Console.WriteLine($"Содержание глютена: {glutenstr}");
+            Console.WriteLine($"Сорт карамели: {grade}");
             return "\0";
         }
         public override void Official()
         {
-            Console.WriteLine("<< Очень вкусное печенье >>");
+            base.Official();
         }
     }
-    class ChildrensGift
+    class CandyBox : Candy, IPastry
     {
-        private readonly List<Candy>? ListCandy;
-        public List<Candy>? GetList
+        protected string color;
+        public CandyBox(string title, int amount, int price, int sugarprocent, string color) : base(title, amount, price, sugarprocent)
         {
-            get;
-            set;
+            this.title = title;
+            this.amount = amount;
+            this.price = price;
+            this.sugarprocent = sugarprocent;
+            this.color = color;
         }
-        public ChildrensGift()
+
+        public string Color
         {
-            ListCandy = new List<Candy>();
+            get { return color; }
+            set { color = value; }
         }
-        public void addCandy(Candy obj)
+        public override string ToString()
         {
-            ListCandy.Add(obj);
+            base.ToString();
+            Console.WriteLine($"Цвет коробок: {color}");
+            return "\0";
         }
-        public bool removeCandy(int position)
+        public override void Official()
         {
-            if (position < ListCandy.Count)
-            {
-                Console.WriteLine($"Элемент {position} удалён");
-                ListCandy.RemoveAt(position - 1);
-                return true;
-            }
-            else
-            {
-                return false;
-            }
+            base.Official();
         }
-        public void Show()
+        public override bool Equals(object? obj)
         {
-            Console.WriteLine("----Список----"); Console.WriteLine();
-            foreach (Candy obj in ListCandy)
-            {
-                Console.WriteLine(obj);
-            }
-            Console.WriteLine("--------------");
+            return base.Equals(obj);
         }
-        public System.Collections.IEnumerator GetEnumerator()
+        public override int GetHashCode()
         {
-            return ListCandy.GetEnumerator();
+            Console.WriteLine("Артикул: " + color.GetHashCode());
+            return 0;
         }
     }
-    class Controller 
+    class ChocolateCandy : Candy, IPastry
     {
-        public static int GiftWeight(ChildrensGift ListCandy)
+        protected int procent;
+        public ChocolateCandy(string title, int amount, int price, int sugarprocent, int procent) : base(title, amount, price, sugarprocent)
         {
-            int weight = 0;
-            foreach (var i in ListCandy)
-            {
-                if (i is CandyBox)
-                {
-                    weight += 1000;
-                }
-                if (i is Caramel)
-                {
-                    weight += 300;
-                }
-                if (i is ChocolateCandy)
-                {
-                    weight += 200;
-                }
-                if (i is Cookie)
-                {
-                    weight += 1500;
-                }
-            }
-            return weight;
+            this.title = title;
+            this.amount = amount;
+            this.price = price;
+            this.sugarprocent = sugarprocent;
+            this.procent = procent;
         }
-        public static ChildrensGift SugarSort(ChildrensGift ListCandy) 
+
+        public int Procent
         {
-            int size = 0;
-            int counter = 0;
-
-            foreach (var i in ListCandy)
-            {
-                size++;
-            }
-
-            Candy[] arr = new Candy[size]; 
-            foreach (Candy i in ListCandy)
-            {
-                arr[counter] = i;
-                counter++;
-            }
-
-            Candy temp;
-            for (int i = 0; i < arr.Length - 1; i++)
-            {
-                for (int j = 0; j < arr.Length - i - 1; j++)
-                {
-                    if (arr[j].Price < arr[j + 1].Price)
-                    {
-                        temp = arr[j];
-                        arr[j] = arr[j + 1];
-                        arr[j + 1] = temp;    
-                    }
-                }
-            }
-            
-            ChildrensGift childrensGift = new ChildrensGift();
-            
-            for (int i = 0; i < arr.Length; i++)
-            {
-                childrensGift.addCandy(arr[i]);
-            }
-            return childrensGift;
+            get { return procent; }
+            set { procent = value; }
         }
-        public static string FindCandy(ChildrensGift ListCandy, int procent)
+        public override string ToString()
         {
-            string str = "Конфеты с заданным содержанием сахара нет";
-            foreach (Candy i in ListCandy)
-            {
-                if (i.Sugarprocent == procent)
-                {
-                    str = i.Title.ToString();
-                }
-            }
-            return str;
+            base.ToString();
+            Console.WriteLine($"Процент содержания какао: {procent}%");
+            return "\0";
+        }
+        public override void Official()
+        {
+            base.Official();
+        }
+    }
+    partial class Cookie : Candy, IPastry
+    {
+        protected bool gluten;
+        protected string glutenstr = " ";
+        public Cookie(string title, int amount, int price, int sugarprocent, bool gluten) : base(title, amount, price, sugarprocent)
+        {
+            this.title = title;
+            this.amount = amount;
+            this.price = price;
+            this.sugarprocent = sugarprocent;
+            this.gluten = gluten;
+        }
+
+        public bool Gluten
+        {
+            get { return gluten; }
+            set { gluten = value; }
+        }
+    }
+    class Printer
+    {
+        public virtual void IAmPrinting(Candy candies)
+        {
+            Console.WriteLine($"\t{candies.GetType().Name}");
+            candies.ToString();
+            candies.Official();
         }
     }
 }
