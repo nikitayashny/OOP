@@ -92,5 +92,52 @@ namespace laba5
             }
             return weight;
         }
+        public static void SugarSort(ChildrensGift ListCandy) 
+        {
+            int size = 0;
+            int counter = 0;
+
+            foreach (var i in ListCandy)
+            {
+                size++;
+            }
+
+            Candy[] arr = new Candy[size]; 
+            foreach (Candy i in ListCandy)
+            {
+                arr[counter] = i;
+                counter++;
+            }
+
+            int[] pricearr = new int[arr.Length];
+            for (int i = 0; i < arr.Length; i++)
+            {
+                pricearr[i] = arr[i].price;
+            }
+
+            Candy temp;
+            int tempint;
+            for (int i = 0; i < pricearr.Length - 1; i++)
+            {
+                for (int j = 0; j < pricearr.Length - i - 1; j++)
+                {
+                    if (pricearr[j] < pricearr[j + 1])
+                    {
+                        temp = arr[j];
+                        arr[j] = arr[j + 1];
+                        arr[j + 1] = temp;
+
+                        tempint = pricearr[j];
+                        pricearr[j] = pricearr[j + 1];
+                        pricearr[j + 1] = tempint;
+                    }
+                }
+            }
+
+            for (int i = 0; i < arr.Length; i++)
+            {
+                Console.WriteLine(arr[i]);
+            }
+        }
     }
 }
