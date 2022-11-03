@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -11,8 +11,8 @@ namespace laba5
         static void Main(string[] args)
         {
             ChildrensGift childrensgift = new ChildrensGift();
-            Candy[] candies = { new CandyBox("Merci", 10, 350, "синий"), new Caramel("Карамелька", 15, 100, "высший"),
-                              new ChocolateCandy("Аришка", 75, 3, 34), new Cookie("Любовь", 40, 85, false)};
+            Candy[] candies = { new CandyBox("Merci", 10, 350, 30, "синий"), new Caramel("Карамелька", 15, 100, 90, "высший"),
+                                new ChocolateCandy("Аришка", 75, 3, 50, 34), new Cookie("Любовь", 40, 85, 20, false)};
             foreach (var i in candies)
             {
                 childrensgift.addCandy(i);
@@ -20,6 +20,14 @@ namespace laba5
             childrensgift.Show();
             childrensgift.removeCandy(2);
             childrensgift.Show();
+
+            Console.WriteLine($"Общий вес подарка: {Controller.GiftWeight(childrensgift)} г");
+            Console.WriteLine(); Console.WriteLine("Отсортированный по цене список:"); Console.WriteLine();
+            ChildrensGift childrengiftSorted = Controller.SugarSort(childrensgift);
+            childrengiftSorted.Show();
+            Console.WriteLine("Конфета с заданным содержанием сахара: " + Controller.FindCandy(childrensgift, 30));
+           
+            Console.ReadKey();
         }
     }
 }
