@@ -5,7 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Diagnostics;
 
-namespace lab04
+namespace laba6
 {
     class NullCollectionException : Exception
     {
