@@ -33,69 +33,84 @@ namespace laba6
             //Controller.ReadFile(container, @"C:\Users\User\Desktop\ООП\laba5\laba5\ChildrensGift.txt");
             //container.Show();
 
-            try
+            checked
             {
-                int test = 2;
-                Logger logger = new Logger();
-                logger.FileLoggerWriteLine("Log-файл успешно создан");
                 try
                 {
-                    ChildrensGift test1 = new ChildrensGift();
-                    
-                    CandyBox candy1 = new CandyBox("Merci", 10, 350, 30, "синий");
-                    for(int i = 0; i < 10; i++)
+                    int test = 0;
+                    Logger logger = new Logger();
+                    logger.FileLoggerWriteLine("Log-файл успешно создан");
+                    try
                     {
-                        test1.addCandy(candy1);
-                    }
-                    test1.removeCandy(100);
-                    //candies[10].ToString();
+                        ChildrensGift test1 = new ChildrensGift();
+                       
+                       
+                        CandyBox candy1 = new CandyBox("Merci", 10, 350, 30, "синий");
 
-                    //int test2 = 0;
-                    //test2 /= 0;
-                    //Debug.Assert(test <= 1 && test >= 0, "Значение testpr может быть только 0 или 1");
+                        for (int i = 0; i < 10; i++)
+                        {
+                            test1.addCandy(candy1);
+                        }
+
+                        //test1.removeCandy(-1);
+
+                        //candies[10].ToString();
+
+                        //int value = 780000000;
+                        //int square = value * value;
+                        //Console.WriteLine("{0} ^ 2 = {1}", value, square);
+
+                        //int test2 = 0;
+                        //test2 /= 0;
+                        //Debug.Assert(test <= 1 && test >= 0, "Значение testpr может быть только 0 или 1");
+                    }
+                    catch (DivideByZeroException exception) when (test != 1)
+                    {
+                        logger.FileLoggerWriteError("Error NullReferenceException", exception.Message, exception.StackTrace);
+                        logger.ConsoleLoggerError("Error NullReferenceException", exception.Message, exception.StackTrace);
+                    }
+                    catch (DivideByZeroException)
+                    {
+                        Console.WriteLine("Попытка поднлить на ноль");
+                    }
+                    catch (NullCollectionException exception)
+                    {
+                        Console.WriteLine($"Произошла ошибка: {exception.Message}");
+                    }
+                    catch (OverflowException exception) when (test != 1)
+                    {
+                        logger.FileLoggerWriteError("Error Class MaxCollection", exception.Message, exception.StackTrace);
+                        logger.ConsoleLoggerError("Error class MaxCollections", exception.Message, exception.StackTrace);
+                    }
+                    catch (OverflowException exception)
+                    {
+                        Console.WriteLine($"Произошла ошибка: {exception.Message}");
+                    }
+                    catch (DeleteNullObject exception)
+                    {
+                        Console.WriteLine($"Произошла ошибка: {exception.Message}");
+                    }
+                    catch
+                    {
+                        Console.WriteLine("Поиск возможной причины исключения");
+                        throw;
+                    }
                 }
-                catch (DivideByZeroException exception) when (test != 1)
+                catch (IndexOutOfRangeException)
                 {
-                    logger.FileLoggerWriteError("Error NullReferenceException", exception.Message, exception.StackTrace);
-                    logger.ConsoleLoggerError("Error NullReferenceException", exception.Message, exception.StackTrace);
-                }
-                catch (NullCollectionException exception)
-                {
-                    Console.WriteLine($"Произошла ошибка: {exception.Message}");
-                }
-                catch (MaxCollection exception) when (test != 1)
-                {
-                    logger.FileLoggerWriteError("Error Class MaxCollection", exception.Message, exception.StackTrace);
-                    logger.ConsoleLoggerError("Error class MaxCollections", exception.Message, exception.StackTrace);
-                }
-                catch (MaxCollection exception)
-                {
-                    Console.WriteLine($"Произошла ошибка: {exception.Message}");
-                }
-                catch (DeleteNullObject exception)
-                {
-                    Console.WriteLine($"Произошла ошибка: {exception.Message}");
+                    Console.WriteLine("Попытка обращения к несуществующему элементу");
                 }
                 catch
                 {
-                    Console.WriteLine("Поиск возможной причины исключения");
-                    throw;
+                    Console.WriteLine("Исключение необработано");
                 }
-            }
-            catch (IndexOutOfRangeException)
-            {
-                Console.WriteLine("Попытка обращения к несуществующему элементу");
-            }
-            catch
-            {
-                Console.WriteLine("Исключение необработано");
-            }
-            finally
-            {
-                Console.WriteLine("Тест закончился");
-            }
+                finally
+                {
+                    Console.WriteLine("Тест закончился");
+                }
 
-            Console.ReadKey();
+                Console.ReadKey();
+            }
         }
     }
 }
