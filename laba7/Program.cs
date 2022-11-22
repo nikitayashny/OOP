@@ -40,7 +40,20 @@ namespace laba7
                 intlist.FoundNode(1);
                 intlist.ShowInfo();
 
+                Caramel caramel1 = new Caramel("Карамель1", 10, 100, "Высший");
+                Caramel caramel2 = new Caramel("Карамель2", 5, 50, "Средний");
+                Caramel caramel3 = new Caramel("Карамель3", 20, 10, "Низший");
 
+                Console.WriteLine(" - - - - - Вывод списка Caramel - - - - - ");
+                List<Caramel> listCheck = new List<Caramel>();
+                listCheck.AddNode(caramel1);
+                listCheck.AddNode(caramel2);
+                listCheck.AddNode(caramel3);
+                listCheck.ShowInfo();
+                Console.WriteLine(" - - - - - Вывод списка без удалённого элемента - - - - - - - ");
+                listCheck.DeleteNode(caramel3);
+                listCheck.ShowInfo();
+                Console.WriteLine("Количество элементов списка Check " + StaticOperations.Count(listCheck));
             }
             catch (DeleteNotFounded exception)
             {
