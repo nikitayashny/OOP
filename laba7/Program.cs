@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -12,19 +12,34 @@ namespace laba7
         {
             try
             {
-                List<string> list = new List<string>();
-
+                List<string> strlist = new List<string>();
                 Console.WriteLine(" - - - - - Вывод списка string - - - - - ");
 
-                list.AddNode("yashny");
-                list.AddNode("nikita");
-                list.AddNode("sergeevich");
-                list.ShowInfo();
+                strlist.AddNode("yashny");
+                strlist.AddNode("nikita");
+                strlist.AddNode("sergeevich");
+                strlist.ShowInfo();
 
                 Console.WriteLine(" - - - - - Вывод списка без удалённого элемента - - - - - ");
-                list.DeleteNode("sergeevich");
+                strlist.DeleteNode("sergeevich");
                 //list.DeleteNode("Nikita");    // ошибка (не найден элемент)
-                list.ShowInfo();
+                strlist.ShowInfo();
+                Console.WriteLine("Количество элементов списка string: " + StaticOperations.Count(strlist));
+
+
+                List<int> intlist = new List<int>();
+                Console.WriteLine(" - - - - - Вывод списка инт - - - - - ");
+                
+                intlist.AddNode(1);
+                intlist.AddNode(2);
+                intlist.AddNode(3);
+                intlist.ShowInfo();
+
+                Console.WriteLine(" - - - - - Вывод списка без удалённого элемента - - - - - ");
+                intlist.DeleteNode(2);
+                intlist.FoundNode(1);
+                intlist.ShowInfo();
+
 
             }
             catch (DeleteNotFounded exception)
