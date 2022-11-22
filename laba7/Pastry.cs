@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -72,9 +72,8 @@ namespace laba7
 
         public override string ToString()
         {
-            base.ToString();
-            Console.WriteLine($"Сорт карамели: {Grade}");
-            return "\0";
+            string str = $"Caramel {title} {amount} {price} {grade}";
+            return str;
         }
         public override void Official()
         {
@@ -188,5 +187,65 @@ namespace laba7
             candies.ToString();
             candies.Official();
         }
+    }
+    class Streams<T> where T : class
+    {
+        public static void InFile(ref List<T> list, string patch)
+        {
+            Node<T> node = list.Head;
+            string str2 = "";
+            using (StreamWriter sw = new StreamWriter(patch, false, Encoding.Default))
+            {
+                while (node != null)
+                {
+                    if (node.Info is Caramel)
+                    {
+                        str2 = node.Info.ToString() + "\n";
+                        sw.WriteLine(str2);
+                        node = node.Next;
+
+                    }
+                    else if (node.Info is int)
+                    {
+                        str2 = $"int {node.Info}\n";
+                        sw.WriteLine(str2);
+                        node = node.Next;
+
+                    }
+                    else if (node.Info is string)
+                    {
+                        str2 = $"string {node.Info}\n";
+                        sw.WriteLine(str2);
+                        node = node.Next;
+
+                    }
+                }
+
+            }
+
+        }
+
+
+        public static void ReadFile(ref List<Caramel> collection1, ref List<string> collection2, ref List<int> collection3, string patch)
+        {
+            string[] textFile = System.IO.File.ReadAllLines(patch);
+            for (int i = 0; i < textFile.Length; i++)
+            {
+                string[] dwordLine = textFile[i].Split(' ');
+                switch (dwordLine[0])
+                {
+                    case "Caramel":
+                        collection1.AddNode(new Caramel(dwordLine[1], Convert.ToInt32(dwordLine[2]), Convert.ToInt32(dwordLine[3]), dwordLine[4]));
+                        break;
+                    case "string":
+                        collection2.AddNode(dwordLine[1]);
+                        break;
+                    case "int":
+                        collection3.AddNode(Convert.ToInt32(dwordLine[1]));
+                        break;
+                }
+            }
+        }
+
     }
 }
