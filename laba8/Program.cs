@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -43,6 +43,28 @@ namespace laba8
 
             Console.WriteLine("Проверяем состояния объектов:");
             Console.WriteLine($"{Obj1} {Obj2} {Obj3}");
+
+            Func<string, string> A;
+            string str = "Nikita; Yashny.: Sergeevich,";
+
+            Console.WriteLine($"\n\nСтрока: {str}");
+            A = StringEditor.RemovePunctuation;
+            Console.WriteLine($"{A.Method.Name}: {A(str)}");
+            str = A(str);
+            A += StringEditor.AddSymbol;
+            Console.WriteLine($"{A.Method.Name}: {A(str)}");
+            str = A(str);
+            A += StringEditor.ToUpper;
+            Console.WriteLine($"{A.Method.Name}: {A(str)}");
+            str = A(str);
+            A += StringEditor.ToLower;
+            Console.WriteLine($"{A.Method.Name}: {A(str)}");
+            str = A(str);
+            A += StringEditor.RemoveSpace;
+            Console.WriteLine($"{A.Method.Name}: {A(str)}");
+            str = A(str);
+
+            Console.ReadKey();
         }
     }
 }
