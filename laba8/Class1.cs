@@ -1,35 +1,28 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Text.RegularExpressions;
-
-namespace laba8
-{
-    class User
+class StringEditor
     {
-        public delegate void UserDelegate(object obj);
-
-        public event UserDelegate Move;
-        public event UserDelegate Squeeze;
-
-        public void move(object obj)
+        public static string RemovePunctuation(string str)
         {
-            Console.WriteLine("Отработал move");
-            Console.WriteLine("Задайте смещение");
-            int num = int.Parse(Console.ReadLine());
-            obj = num;
-            obj.ToString();
-            Move?.Invoke(obj);
+            str = Regex.Replace(str, "[.,;:]", string.Empty);
+            return str;
         }
-        public void squeeze(object obj)
+
+        public static string AddSymbol(string str)
         {
-            Console.WriteLine("Отработал squeeze");
-            Console.WriteLine("Задайте сжатие");
-            int num = int.Parse(Console.ReadLine());
-            obj.ToString();
-            Squeeze?.Invoke(obj);
+            return str += "Laba8";
+        }
+
+        public static string ToUpper(string str)
+        {
+            return str.ToUpper();
+        }
+
+        public static string ToLower(string str)
+        {
+            return str.ToLower();
+        }
+
+        public static string RemoveSpace(string str)
+        {
+            return str.Replace(" ", string.Empty);
         }
     }
-}
