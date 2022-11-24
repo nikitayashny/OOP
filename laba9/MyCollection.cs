@@ -6,7 +6,8 @@ using System.Text;
 using System.Threading.Tasks;
 
 namespace laba9
-{   public interface IList<T>
+{  
+    public interface IList<T>
     {
         void Add(T item);
         
@@ -15,7 +16,7 @@ namespace laba9
         void ShowCollection();
     }
 
-    public class MyCollection<T> : IList<T>
+    public class MyCollection<T> : IList<T>, IEnumerable<T>
     {
         private ArrayList items = new ArrayList();
 
@@ -45,6 +46,43 @@ namespace laba9
             {
                 Console.WriteLine(item);
             }
+        }
+
+        IEnumerator<T> GetEnumerator()
+        {
+            return new CollectionEnumerator<T>(items);
+        }
+        IEnumerator IEnumerable.GetEnumerator()
+        {
+            return GetEnumerator();
+        }
+        IEnumerator<T> IEnumerable<T>.GetEnumerator()
+        {
+            return ((IEnumerable<T>)items).GetEnumerator();
+        }
+
+    }
+    class CollectionEnumerator<T> : IEnumerator<T>
+    {
+        private ArrayList items;
+        private int position = -1;
+
+        public CollectionEnumerator(ArrayList items)
+        {
+            this.items = items;
+        }
+
+        public T Current => (T)items[position];
+        object IEnumerator.Current => Current;
+        public void Dispose() { }
+        public bool MoveNext()
+        {
+            position++;
+            return position < items.Count;
+        }
+        public void Reset()
+        {
+            position = -1;
         }
     }
 }
