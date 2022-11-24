@@ -15,7 +15,7 @@ namespace laba9
             Plant grass = new Plant("Трава");
             Plant bush = new Plant("Куст");
 
-            MyCollection<Plant> plants = new MyCollection<Plant>() { tree, flower, grass, bush};
+            MyCollection<Plant> plants = new MyCollection<Plant>() { tree, flower, grass, bush };
 
             plants.ShowCollection();
             Console.WriteLine();
@@ -84,9 +84,36 @@ namespace laba9
             if (dict.TryGetValue(6, out pair2))
             {
                 pair2 = dict[6];
-                Console.WriteLine($"объект :{pair2}- найден");
+                Console.WriteLine($"объект :{pair2} - найден");
             }
-            
+
+
+            ObservableCollection<Plant> obsPlant = new ObservableCollection<Plant>() { tree, flower, grass, bush };
+            Console.WriteLine();
+            obsPlant.CollectionChanged += ObsPlantChanged;
+            Plant newPlant = new Plant("Водоросль");
+            obsPlant.Add(newPlant);
+            obsPlant.Remove(bush);
+            Console.ReadKey();
+        }
+
+        private static void ObsPlantChanged(object sender, NotifyCollectionChangedEventArgs e)
+        {
+            switch (e.Action)
+            {
+                case NotifyCollectionChangedAction.Add:
+                    {
+                        Plant plants = e.NewItems[0] as Plant;
+                        Console.WriteLine($"Элемент {plants.Type} был добавлен");
+                        break;
+                    };
+                case NotifyCollectionChangedAction.Remove:
+                    {
+                        Plant plants = e.OldItems[0] as Plant;
+                        Console.WriteLine($"Элемент {plants.Type} был удален");
+                        break;
+                    }
+            }
         }
     }
 }
