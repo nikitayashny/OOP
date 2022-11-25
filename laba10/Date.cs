@@ -41,8 +41,24 @@ namespace laba10
 
         public Date() { day = 31; month = 1; year = 2004; }                 // конструктор класса без параметров
         public Date(int a) { day = a; month = 3; year = 1980; }             // конструктор класса с одним параметром
-        public Date(int a, int b, int c) { day = a; month = b; year = c; }  // конструктор класса с тремя параметрами
-        private Date(int a, int b) { day = a; month = b; year = 2000; }     // закрытый конструктор
+      
+        private Date(int day, int month, int year)
+        {      
+            this.day = day;
+            this.month = month;
+            this.year = year;
+        }
+        public int Year
+        {
+            get
+            {
+                return year;
+            }
+            set
+            {
+                year = value;
+            }
+        }
 
 
         bool LeapYear(int year)                                             // метод проверки високосного года
