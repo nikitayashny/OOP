@@ -37,12 +37,10 @@ namespace laba10
         public int month;
         public int year;
         string[] num = { "января", "февраля", "марта", "апреля", "мая", "июня", "июля", "августа", "сентября", "октября", "ноября", "декабря" };
-
-
         public Date() { day = 31; month = 1; year = 2004; }                 // конструктор класса без параметров
         public Date(int a) { day = a; month = 3; year = 1980; }             // конструктор класса с одним параметром
       
-        private Date(int day, int month, int year)
+        public Date(int day, int month, int year)
         {      
             this.day = day;
             this.month = month;
@@ -60,6 +58,29 @@ namespace laba10
             }
         }
 
+        public int Month
+        {
+            get
+            {
+                return month;
+            }
+            set
+            {
+                month = value;
+            }
+        }
+
+        public int Day
+        {
+            get
+            {
+                return day;
+            }
+            set
+            {
+                day = value;
+            }
+        }
 
         bool LeapYear(int year)                                             // метод проверки високосного года
         {
