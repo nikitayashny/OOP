@@ -78,6 +78,7 @@ namespace laba10
             var maxdate = dates.Max(e => (e.Year, e.Month, e.Day));
             var firstdate = dates.First(e => e.Day == 11);
             var sorted = dates.OrderBy(e => (e.Year, e.Month, e.Day));
+            var birthday = dates.Where(e => e.Year == 2004).Where(e => e.Month == 1).Where(e => e.Day == 31);
 
             Console.WriteLine("Cписок дат для заданного года: ");
             foreach (var s in years)
@@ -107,6 +108,13 @@ namespace laba10
 
             Console.WriteLine("Упорядоченный список дат (хронологически):");
             foreach (var s in sorted)
+            {
+                s.Print();
+            }
+            Console.WriteLine();
+
+            Console.WriteLine("Свой запрос(день рождения)");
+            foreach (var s in birthday)
             {
                 s.Print();
             }
