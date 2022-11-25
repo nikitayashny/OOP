@@ -79,6 +79,7 @@ namespace laba10
             var firstdate = dates.First(e => e.Day == 11);
             var sorted = dates.OrderBy(e => (e.Year, e.Month, e.Day));
             var birthday = dates.Where(e => e.Year == 2004).Where(e => e.Month == 1).Where(e => e.Day == 31);
+            var five = dates.Where(e => e.Month != 5).Where(e => e.Year == 2000).OrderByDescending(e => e.Day).Skip(1).Take(1);
 
             Console.WriteLine("Cписок дат для заданного года: ");
             foreach (var s in years)
@@ -115,6 +116,13 @@ namespace laba10
 
             Console.WriteLine("Свой запрос(день рождения)");
             foreach (var s in birthday)
+            {
+                s.Print();
+            }
+            Console.WriteLine();
+
+            Console.WriteLine("Свой запрос(5 пунктов)");
+            foreach (var s in five)
             {
                 s.Print();
             }
