@@ -127,6 +127,26 @@ namespace laba10
                 s.Print();
             }
             Console.WriteLine();
+
+            List<Date> dates2 = new List<Date>() {
+                new Date(1, 1, 2000),
+                new Date(2, 2, 2200),
+                new Date(3, 3, 2000),
+                new Date(3, 3, 2300)
+            };
+
+            var result = dates.Join(
+                dates2,
+                e => e.Year,
+                c => c.Year,
+                (c, e) => new { den = c.Day, mesyac = e.Month, god = c.Year });
+            Console.WriteLine("-------Join----------");
+            foreach (var item in result)
+            {
+                Console.WriteLine($"Год: {item.god}\tМесяц: {item.mesyac}\tДень: {item.den}");
+            }
+
+            Console.ReadKey();
         }   
     }
 }
