@@ -79,4 +79,54 @@ namespace laba15
                 Console.WriteLine($"Результат задачи GetAwaiter(): {res}");
             });
         }
+           public static void Task6()
+        {
+            var array1 = new int[10000000];
+            var array2 = new int[10000000];
+            var array3 = new int[10000000];
+            var array4 = new int[10000000];
+
+            var stopwatch = new Stopwatch();
+
+            stopwatch.Start();
+            //FOR
+            Parallel.For(0, 10000000, CreatingArrayElements);
+            stopwatch.Stop();
+            Console.WriteLine($"Parallel FOR {stopwatch.ElapsedMilliseconds} ms");
+
+            stopwatch.Restart();
+            for (var i = 0; i < 10000000; i++)
+            {
+                array1[i] = 1;
+                array2[i] = 1;
+                array3[i] = 1;
+            }
+
+            stopwatch.Stop();
+            Console.WriteLine($"Обычный FOR {stopwatch.ElapsedMilliseconds} ms");
+
+            void CreatingArrayElements(int x)
+            {
+                array1[x] = 1;
+                array2[x] = 1;
+                array3[x] = 1;
+            }
+            //распараллельте вычисления цикла ForEach()
+            stopwatch.Restart();
+
+            int sum = 0;
+            Parallel.ForEach(array1, SumOfElements);
+            stopwatch.Stop();
+            Console.WriteLine($"Parallel FOREACH {stopwatch.ElapsedMilliseconds} ms");
+            sum = 0;
+            stopwatch.Restart();
+            foreach (int item in array1) sum += item;
+            stopwatch.Stop();
+            Console.WriteLine($"FOREACH {stopwatch.ElapsedMilliseconds} ms");
+
+            void SumOfElements(int item)
+            {
+                sum += item;
+            }
+        }
 }
