@@ -25,6 +25,31 @@ namespace laba15
             sw.Restart();
             Console.WriteLine("Статус задачи после выполнения: " + task.Status);
             Console.WriteLine("Время выполнения: " + sw.Elapsed + "\n");//затраченное время
-
+        }
+        private static void Task3()
+        {
+            CancellationTokenSource tokenSource = new CancellationTokenSource();
+            CancellationToken token = tokenSource.Token;
+            var task = new Task(() =>
+            {
+                multiplicationMatrix(20);
+            }, token);
+            task.Start();
+            try
+            {
+                tokenSource.Cancel();
+                task.Wait();
+            }
+            catch (AggregateException ex)
+            {
+                if (task.IsCanceled)
+                {
+                    Console.WriteLine($"Задача {task.Id} была отменена\n");
+                }
+            }
+            finally
+            {
+                tokenSource.Dispose();
+            }
         }
 }
