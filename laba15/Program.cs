@@ -52,4 +52,31 @@ namespace laba15
                 tokenSource.Dispose();
             }
         }
+        private static void Task5()
+        {
+            Task<int> sumTask = new Task<int>(() => Sum(4, 5));
+            // задача продолжения
+            Task<int> subTask = sumTask.ContinueWith(t => Sub(4, 5));
+            Task<int> mulTask = subTask.ContinueWith(t => Mul(4, 5));
+            Task printTask1 = sumTask.ContinueWith(t => PrintResult(t.Result));
+            Task printTask2 = subTask.ContinueWith(t => PrintResult(t.Result));
+            Task printTask3 = mulTask.ContinueWith(t => PrintResult(t.Result));
+
+            sumTask.Start();
+
+            // ждем окончания второй задачи
+            printTask3.Wait();
+
+            int Sum(int a, int b) => a + b;
+            int Sub(int a, int b) => a - b;
+            int Mul(int a, int b) => a * b;
+            void PrintResult(int sum) => Console.WriteLine($"Результат задачи: {sum}");
+            //объект ожидания
+            var awaiter = sumTask.GetAwaiter();
+            awaiter.OnCompleted(() =>
+            {
+                int res = awaiter.GetResult();
+                Console.WriteLine($"Результат задачи GetAwaiter(): {res}");
+            });
+        }
 }
