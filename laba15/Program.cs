@@ -332,4 +332,52 @@ namespace laba15
                 Console.WriteLine(name);
             }
         }
+        private static void multiplicationMatrix(int size)
+        {
+            //перемножение матриц
+            var matrix1 = new int[size, size];
+            var matrix2 = new int[size, size];
+            var matrix3 = new int[size, size];
+            var rand = new Random();
+            for (var i = 0; i < size; i++)
+            {
+                for (var j = 0; j < size; j++)
+                {
+                    matrix1[i, j] = rand.Next(1, 10);
+                    matrix2[i, j] = rand.Next(1, 10);
+                }
+            }
+
+            for (var i = 0; i < size; i++)
+            {
+                for (var j = 0; j < size; j++)
+                {
+                    matrix3[i, j] = matrix1[i, j] * matrix2[i, j];
+                }
+            }
+
+            for (var i = 0; i < size; i++)
+            {
+                for (var j = 0; j < size; j++)
+                {
+                    Console.Write(matrix3[i, j] + " ");
+                }
+
+                Console.WriteLine();
+            }
+
+        }
+        private static int Task5_3(int x, int y, int z)
+        {
+            return x + y + z;
+        }
+        public static int Task5_2(int x, int y, int z)
+        {
+            return x * y * z;
+        }
+        private static int Task5_1(int x, int y, int z)
+        {
+            return y * y + z * z;
+        }
+    }
 }
