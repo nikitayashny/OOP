@@ -129,4 +129,15 @@ namespace laba15
                 sum += item;
             }
         }
+        public static void Task7()
+        {
+            //Используя Parallel.Invoke() распараллельте выполнение блока операторов.
+
+            var stopwatch = new Stopwatch();
+            stopwatch.Start();
+            Parallel.Invoke(() => multiplicationMatrix(3), () => multiplicationMatrix(4));
+            stopwatch.Stop();
+            Console.WriteLine($"Parallel Invoke {stopwatch.ElapsedMilliseconds} ms");
+
+        }
 }
